@@ -48,9 +48,18 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center automotive-pattern overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-automotive-darkBlue/80 to-automotive-blue/60"></div>
+      {/* Hero Section with Background Image */}
+      <section className="relative h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url('https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2532&q=80')`
+          }}
+        ></div>
+        
+        {/* Dark Overlay */}
+        <div className="absolute inset-0 bg-automotive-darkBlue/70"></div>
         
         <div className="relative z-10 text-center text-white max-w-4xl mx-auto px-4 animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 font-serif">
@@ -73,7 +82,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Animated Background Elements */}
+        {/* Bottom Fade */}
         <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-white to-transparent"></div>
       </section>
 
