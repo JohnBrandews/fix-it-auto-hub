@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <div class="container mt-4">
+        <h1 class="mb-4">Nunny Dashboard</h1>
+        <p class="lead">Welcome back, {{ current_user.first_name }}!</p>
+        <p>This is your personal space to find and manage job opportunities. Below, you'll find current client requisitions matching your profile and services.</p>
+
+        <hr>
+
+        <h3 class="mt-4 mb-3">Active Client Requisitions</h3>
+
+        {# Placeholder for client requisitions list - to be populated dynamically later #}
+        <div class="alert alert-info" role="alert">
+            <h4 class="alert-heading">Coming Soon!</h4>
+            <p>The functionality to display client requisitions is currently under development. Soon, you will see a list of available jobs here, including details like service required, location, and offered rate.</p>
+            <hr>
+            <p class="mb-0">You'll be able to filter these requisitions based on your preferences and apply for jobs directly through the platform.</p>
+        </div>
+
+        {# Example of how a requisition might look - for styling/layout planning #}
+        <!--
+        <div class="card mb-3">
+            <div class="card-header">
+                Featured Requisition (Example)
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Babysitter for Two Toddlers</h5>
+                <p class="card-text"><strong>Client:</strong> Jane D.</p>
+                <p class="card-text"><strong>Location:</strong> Nairobi, Kilimani</p>
+                <p class="card-text"><strong>Service Needed:</strong> Babysitting for two children (ages 2 and 4), weekdays from 1 PM to 5 PM.</p>
+                <p class="card-text"><strong>Offered Rate:</strong> KSh 1,800 per day.</p>
+                <p class="card-text"><strong>Client Rating:</strong> 4.5/5 stars (from previous nunnies)</p>
+                <a href="#" class="btn btn-primary">View Details & Apply (Coming Soon)</a>
+            </div>
+            <div class="card-footer text-muted">
+                Posted 2 days ago
+            </div>
+        </div>
+        -->
+
+        <div class="mt-5">
+            <h4>Your Profile & Services</h4>
+            <p>Ensure your profile is up-to-date to attract the best opportunities.</p>
+            {# <a href="{{ url_for('main.edit_profile') }}" class="btn btn-secondary">Edit My Profile (Coming Soon)</a> #}
+            <a href="#" class="btn btn-secondary">Edit My Profile (Coming Soon)</a>
+        </div>
+    </div>
+{% endblock %}

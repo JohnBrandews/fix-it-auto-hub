@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+    <div class="jumbotron" style="background-image: url('{{ url_for('static', filename='images/nunny_sweeping.jpg') }}'); background-size: cover; background-position: center; color: white; text-shadow: 2px 2px 4px #000000;">
+        <div style="background-color: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px;">
+            <h1 class="display-4">Welcome to My Nunny!</h1>
+            <p class="lead">Connecting Clients with reliable Nunnies across Kenya.</p>
+            <hr class="my-4" style="border-top: 1px solid rgba(255,255,255,0.5);">
+            <p>Find household help or offer your services today.</p>
+            {% if not current_user.is_authenticated %}
+            <a class="btn btn-primary btn-lg mr-2" href="{{ url_for('auth.register_client') }}" role="button">Hire a Nunny</a>
+            <a class="btn btn-info btn-lg" href="{{ url_for('auth.register_nunny') }}" role="button">Become a Nunny</a>
+            {% elif current_user.role == 'client' %}
+             <a class="btn btn-primary btn-lg" href="{{ url_for('main.client_dashboard') }}" role="button">View Nunny Profiles</a>
+            {% elif current_user.role == 'nunny' %}
+             <a class="btn btn-primary btn-lg" href="{{ url_for('main.nunny_dashboard') }}" role="button">View Client Requisitions</a>
+            {% endif %}
+        </div>
+    </div>
+
+    {# Later: Display Client Requisitions/Offers here #}
+    <h2 class="mt-5">Latest Client Offers</h2>
+    <p><em>Client requisitions will be displayed here soon. This section will showcase current service needs from clients.</em></p>
+    {# Example structure for later population #}
+    <!--
+    <div class="card-deck">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Babysitter Needed</h5>
+                <p class="card-text">Looking for a babysitter for two toddlers, weekday afternoons.</p>
+                <p class="card-text"><small class="text-muted">Posted: 2 hours ago</small></p>
+                <p class="card-text"><strong>Rate: KSh 1500/day</strong></p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Weekly House Cleaning</h5>
+                <p class="card-text">Need thorough cleaning for a 3-bedroom house once a week.</p>
+                <p class="card-text"><small class="text-muted">Posted: 5 hours ago</small></p>
+                <p class="card-text"><strong>Rate: KSh 2000/day</strong></p>
+            </div>
+        </div>
+    </div>
+    -->
+{% endblock %}

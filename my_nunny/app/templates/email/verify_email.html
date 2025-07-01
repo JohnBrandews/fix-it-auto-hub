@@ -1,0 +1,14 @@
+<p>Dear {{ user.first_name }},</p>
+<p>
+    Welcome to My Nunny! To complete your registration and verify your email address,
+    please click on the following link:
+    <a href="{{ url_for('auth.verify_email_route', token=token, _external=True) }}">
+        Verify Email
+    </a>
+</p>
+<p>Alternatively, you can paste the following link into your browser's address bar:</p>
+<p>{{ url_for('auth.verify_email_route', token=token, _external=True) }}</p>
+<p>This link will expire in 1 hour.</p>
+<p>If you did not create an account, please ignore this email.</p>
+<p>Sincerely,</p>
+<p>The My Nunny Team</p>
