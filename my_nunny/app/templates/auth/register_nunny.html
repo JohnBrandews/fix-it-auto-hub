@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% import 'bootstrap/wtf.html' as wtf %}
+
+{% block app_content %}
+    <h1>Register as a Nunny</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <form action="" method="post" novalidate enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                {{ wtf.form_field(form.first_name) }}
+                {{ wtf.form_field(form.last_name) }}
+                {{ wtf.form_field(form.gender) }}
+                {{ wtf.form_field(form.email) }}
+                {{ wtf.form_field(form.region) }}
+                {{ wtf.form_field(form.county) }}
+                {{ wtf.form_field(form.id_number) }}
+                {{ wtf.form_field(form.id_image) }}
+                {{ wtf.form_field(form.profile_picture) }}
+                {{ wtf.form_field(form.services_offered) }}
+                {{ wtf.form_field(form.age_range) }}
+                {{ wtf.form_field(form.password) }}
+                {{ wtf.form_field(form.password2) }}
+                {{ wtf.form_field(form.submit) }}
+            </form>
+        </div>
+    </div>
+    <!-- JavaScript for dynamic county population -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var regionSelect = document.getElementById('region');
+            var countySelect = document.getElementById('county');
+
+            function updateCounties() {
+                var regionId = regionSelect.value;
+                // Clear existing county options (except the placeholder if you have one)
+                var initialOptionValue = countySelect.options.length > 0 ? countySelect.options[0].value : "0";
+                var initialOptionText = countySelect.options.length > 0 ? countySelect.options[0].text : "Select County...";
+
+                countySelect.innerHTML = ''; // Clear all options
+                // Add back the placeholder/default option
+                var placeholderOption = new Option(initialOptionText, initialOptionValue);
+                countySelect.add(placeholderOption);
+                countySelect.value = initialOptionValue; // Reset selection to placeholder
+
+
+                if (regionId && regionId !== "0") { // "0" or empty for placeholder
+                    // Construct URL carefully, ensuring no double slashes if base URL ends with /
+                    var baseUrl = "{{ url_for('auth.get_counties_for_region', region_id=0) }}";
+                    var fetchUrl = baseUrl.substring(0, baseUrl.lastIndexOf('/') + 1) + regionId;
+
+                    fetch(fetchUrl)
+                        .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok: ' + response.statusText);
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.counties) {
+                                data.counties.forEach(function(county) {
+                                    var option = new Option(county.name, county.id);
+                                    countySelect.add(option);
+                                });
+                            }
+                        })
+                        .catch(error => console.error('Error fetching counties:', error));
+                }
+            }
+
+            if (regionSelect) {
+                regionSelect.addEventListener('change', updateCounties);
+                // If a region is already selected (e.g. due to form error re-render and server pre-populates county list),
+                // we don't strictly need to call updateCounties() again unless we want to ensure client-side consistency
+                // or if the server doesn't pre-fill the county list fully.
+                // For now, relying on server-side population of county list on error.
+            }
+        });
+    </script>
+{% endblock %}

@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block app_content %}
+<div class="container mt-4">
+    <h1 class="mb-4">Client Dashboard</h1>
+    <p class="lead">Welcome back, {{ current_user.first_name }}!</p>
+    <p>This is your hub for finding and managing household help. Below, you can browse profiles of available Nunnies or post a new service requisition.</p>
+
+    <hr>
+
+    <div class="row mb-4">
+        <div class="col-md-6">
+            {# <a href="{{ url_for('main.post_requisition') }}" class="btn btn-success btn-lg btn-block">Post a New Service Requisition (Coming Soon)</a> #}
+            <a href="#" class="btn btn-success btn-lg btn-block">Post a New Service Requisition (Coming Soon)</a>
+        </div>
+        <div class="col-md-6">
+            {# <a href="{{ url_for('main.view_my_requisitions') }}" class="btn btn-info btn-lg btn-block">View My Active Requisitions (Coming Soon)</a> #}
+            <a href="#" class="btn btn-info btn-lg btn-block">View My Active Requisitions (Coming Soon)</a>
+        </div>
+    </div>
+
+    <hr>
+
+    <h3 class="mt-4 mb-3">Available Nunnies</h3>
+
+    {# Placeholder for Nunny profiles list - to be populated dynamically later #}
+    <div class="alert alert-primary" role="alert">
+        <h4 class="alert-heading">Feature In Progress!</h4>
+        <p>The system to display and search for Nunny profiles is currently being built. Soon, you will be able to browse Nunnies based on services offered, location, availability, and ratings.</p>
+        <hr>
+        <p class="mb-0">You'll have access to detailed profiles to help you make an informed choice.</p>
+    </div>
+
+    {# Example of how a Nunny profile card might look - for styling/layout planning #}
+    <!--
+    <div class="row">
+        <div class="col-md-4 mb-3">
+            <div class="card">
+                <img src="{{ url_for('static', filename='profile_pics/default_profile.png') }}" class="card-img-top" alt="Nunny Profile Picture" style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title">Agnes M. (Example)</h5>
+                    <p class="card-text"><strong>Services:</strong> Babysitting, Light Housekeeping</p>
+                    <p class="card-text"><strong>Location:</strong> Nairobi, Westlands</p>
+                    <p class="card-text"><strong>Age Range:</strong> 26-35</p>
+                    <p class="card-text"><strong>Contact:</strong> (Hidden until connection)</p>
+                    <a href="#" class="btn btn-primary">View Full Profile & Connect (Coming Soon)</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    -->
+    <div class="mt-5">
+        <h4>Your Profile</h4>
+        <p>Manage your personal information and preferences.</p>
+        {# <a href="{{ url_for('main.edit_profile') }}" class="btn btn-secondary">Edit My Profile (Coming Soon)</a> #}
+        <a href="#" class="btn btn-secondary">Edit My Profile (Coming Soon)</a>
+    </div>
+</div>
+{% endblock %}
